@@ -1,0 +1,102 @@
+.itineraryContainer {
+    font-family: var(--font-family);
+    border-radius: 12px;
+    padding: 12px;
+    background-color: #f7f7f7;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mainTitle {
+    font-size: 1.25rem;
+    color: var(--header-background);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dayAccordion {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.2s;
+}
+
+.dayAccordion[open] {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.daySummary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-color-primary);
+    list-style: none;
+}
+
+.daySummary::-webkit-details-marker {
+    display: none;
+}
+
+.daySummary::after {
+    content: '▼';
+    margin-left: auto;
+    font-size: 0.8em;
+    transition: transform 0.2s ease-in-out;
+}
+
+.dayAccordion[open]>.daySummary::after {
+    transform: rotate(180deg);
+}
+
+.activityList {
+    padding: 0 16px 16px 16px;
+    margin: 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.activityItem {
+    padding: 16px 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.activityItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.activityHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.period {
+    font-weight: 600;
+    color: var(--user-bubble-color);
+    font-size: 0.9rem;
+}
+
+.activityTitle {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.details {
+    margin: 0 0 0 24px;
+    line-height: 1.5;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.fallbackText {
+    white-space: pre-wrap;
+    font-family: monospace;
+}
