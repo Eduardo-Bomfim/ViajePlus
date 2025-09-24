@@ -1,0 +1,12 @@
+# ignore .venv directory
+.venv/
+
+# ignore .vscode settings
+.vscode/
+
+# ignore Python cache files
+__pycache__/
+
+# ignore file __init__.py
+__init__.py
+main.py
