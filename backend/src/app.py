@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from models.Chatbot import Chatbot
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 print("Flask app initialized.")
 
 try:
