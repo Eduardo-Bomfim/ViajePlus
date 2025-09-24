@@ -36,7 +36,7 @@ class Chatbot:
             max_new_tokens=2048,
             eos_token_id=terminators,
             do_sample=True,
-            temperature=0.7,
+            temperature=0.5,
             top_p=0.9,
             return_full_text=False,
             repetition_penalty=1.15,
@@ -44,7 +44,25 @@ class Chatbot:
 
         self.llm = HuggingFacePipeline(pipeline=transformers_pipeline)
 
-        prompt_system = "Você é o 'Roteiro.AI', um assistente de viagens especialista e criativo. Sua tarefa é criar um roteiro de viagem excepcional, detalhado dia por dia e útil. Forneça sugestões de atividades para manhã, tarde e noite, incluindo dicas locais e opções de restaurantes autênticos. Lembre-se de adaptar o roteiro ao destino fornecido pelo usuário e garantir que seja prático e agradável. Além disso, organize o roteiro em formato de tabela para melhor visualização."
+        prompt_system = """Sua única função é gerar um roteiro de viagem.
+            Formate a resposta usando tabelas Markdown para cada dia.
+
+            Use EXATAMENTE o seguinte formato Markdown para cada dia:
+
+            **Dia 1: [TÍTULO CRIATIVO PARA O DIA]**
+
+            | Período | Atividade | Dicas e Detalhes |
+            |---|---|---|
+            | Manhã | [Nome da atividade 1] | [Descrição ou dica útil sobre a atividade 1] |
+            | Tarde | [Nome da atividade 2] | [Descrição ou dica útil sobre a atividade 2] |
+            | Noite | [Nome da atividade 3] | [Descrição ou dica útil sobre a atividade 3] |
+
+            REGRAS ABSOLUTAS:
+            - Você DEVE começar a resposta diretamente com "**Dia 1**".
+            - Você NÃO DEVE fazer perguntas, criar diálogos, saudações ou conclusões.
+            - Sua resposta TERMINA estritamente após a tabela do último dia solicitado.
+            - Concenstre-se EXCLUSIVAMENTE no destino fornecido pelo usuário. NÃO inclua outras cidades, estados ou países no roteiro.
+        """
 
         self.prompt_template = ChatPromptTemplate.from_messages([
             ("system", prompt_system),
